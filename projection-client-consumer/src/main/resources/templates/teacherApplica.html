@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="../js/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../js/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="../js/bootStrap-addTabs/bootstrap.addtabs.css" rel="stylesheet">
+    <link href="../js/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet">
+    <link href="../js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../js/bootstrap-dialog/dist/css/bootstrap-dialog.css" rel="stylesheet">
+    <link href="../js/bootstrap-fileinput/css/fileinput.css" rel="stylesheet">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+    <script src="../js/bootStrap-addTabs/bootstrap.addtabs.js"></script>
+    <script src="../js/bootstrap-table/dist/bootstrap-table.js"></script>
+    <script src="../js/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="../js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="../js/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../js/bootstrap-dialog/dist/js/bootstrap-dialog.js"></script>
+    <script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+</head>
+<body>
+<form class="form-horizontal" id="saveForm">
+    <!--老师注册账号-->
+    <div class="form-group">
+        <label for="username" class="col-sm-2 control-label">账户名</label>
+        <div class="col-sm-8">
+            <input type="text" name="username" id="username" class="form-control"
+                   placeholder="账户名" th:value="${session.userObj.userName}" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="teachername" class="col-sm-2 control-label">老师姓名</label>
+        <div class="col-sm-8">
+            <input type="text" name="teachername" id="teachername" class="form-control"
+                   placeholder="真实姓名" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="courseid" class="col-sm-2 control-label">科目</label>
+        <div class="col-sm-8">
+            <select id="courseid" name="courseid" class="form-control"  onchange="addCourse(this.value)" style="width:150px"></select>
+            <span id="spanid">
+                <input type='hidden' onblur='tijiao()' id='addcourseid'>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="shenfenzheng" class="col-sm-2 control-label">身份证号</label>
+        <div class="col-sm-8">
+            <input type="text" name="shenfenzheng" id="shenfenzheng"
+                   class="form-control" placeholder="身份证号" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="teacherphone" class="col-sm-2 control-label">手机号</label>
+        <div class="col-sm-8">
+            <input type="text" name="teacherphone" id="teacherphone"
+                   class="form-control" placeholder="手机号" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="teachershow" class="col-sm-2 control-label">简介</label>
+        <div class="col-sm-8">
+            <textarea class="form-control" placeholder="简介" rows="3" name="teachershow" id="teachershow"></textarea>
+        </div>
+    </div>
+
+    <div class="row myrow">
+        <div class="col-md-2">
+            <label for="teacherimg">老师头像</label>
+        </div>
+        <div class="col-md-10" >
+            <input type="hidden" id="testimg3" name="teacherimg" />
+            <input type="file"  class="projectfile"  name="img3" id="teacherimg">
+        </div>
+    </div>
+
+    <div class="row myrow">
+        <div class="col-md-2">
+            <label for="identityimg">身份证件照</label>
+        </div>
+        <div class="col-md-10" >
+            <input type="hidden" id="testimg" name="identityimg" />
+            <input type="file"  class="projectfile"  name="img" id="identityimg">
+        </div>
+    </div>
+    <div class="row myrow">
+        <div class="col-md-2">
+            <label for="certification">资质证书</label>
+        </div>
+        <div class="col-md-10" >
+            <input type="hidden" id="testimg2" name="certification" />
+            <input type="file"  class="projectfile"  name="img2" id="certification">
+        </div>
+    </div>
+    <div class="row myrow">
+
+    </div>
+</form>
+<script>
+    $(function () {
+        uploadify();
+        uploadify3();
+        uploadify2();
+        querycourse();
+    })
+    function querycourse(){
+        $.ajax({
+            url:"../img/queryCourse",
+            type: "post",
+            dataType: "json",
+            success: function(data){
+                var html = "<option value=0>请选择</option>";
+                for(var i=0; i<data.length; i++){
+                    html += "<option value='"+data[i].subId+"' onchange='showkemu(this.value)'>"+data[i].subName+"</option>";
+                }
+                    html+="<option value='-1'>其他</option>";
+                $("#courseid").html(html);
+            }
+        })
+    }
+
+    function addCourse(value){
+       if(value==-1){
+           $("#addcourseid")[0].type="text";
+       }
+    }
+    function tijiao(){
+        var course=$("#addcourseid").val()
+        if(course!=""){
+            $.ajax({
+                url:"../img/addCourse",
+                type:"post",
+                data:{"subName":$("#addcourseid").val()},
+                success:function (data){
+                    $("#addcourseid")[0].type="hidden";
+                    querycourse();
+                    $("#courseid").val('"+data+"');
+                    /*$("option[value='"+data+"']").prop("selected",true);*/
+
+                },
+                error:function(){
+                    alert("后台错误，请使用debug调试！！！");
+                }
+            })
+        }
+
+    }
+
+
+
+    //文件上传--身份证件
+    function uploadify(){
+        $('#identityimg').fileinput({
+            language: 'zh', //设置语言
+            uploadUrl: '../img/updaloadImg', //上传的地址
+            allowedFileExtensions: ['jpg', 'png', 'jpeg', 'gif', 'bmp'],//接收的文件后缀
+            showUpload: true, //是否显示上传按钮
+            showCaption: false,//是否显示标题
+            browseClass: "btn btn-primary", //按钮样式
+            maxFileCount: 5, //表示允许同时上传的最大文件个数
+            enctype: 'multipart/form-data',
+            validateInitialCount:true,
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+        }).on('fileuploaded', function(event, data, previewId, index) {
+            var imgval = $('#testimg').val();
+            if(imgval == null || imgval == "" || imgval == undefined){
+                imgval = data.response.imgUrl;
+            }else{
+                imgval += ","+data.response.imgUrl;
+            }
+            $('#testimg').val(imgval);
+        });
+
+    }
+
+    //文件上传--头像
+    function uploadify3(){
+        $('#teacherimg').fileinput({
+            language: 'zh', //设置语言
+            uploadUrl: '../img/updaloadteacherimg', //上传的地址
+            allowedFileExtensions: ['jpg', 'png', 'jpeg', 'gif', 'bmp'],//接收的文件后缀
+            showUpload: true, //是否显示上传按钮
+            showCaption: false,//是否显示标题
+            browseClass: "btn btn-primary", //按钮样式
+            maxFileCount: 5, //表示允许同时上传的最大文件个数
+            enctype: 'multipart/form-data',
+            validateInitialCount:true,
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+        }).on('fileuploaded', function(event, data, previewId, index) {
+            var imgval = $('#testimg3').val();
+            if(imgval == null || imgval == "" || imgval == undefined){
+                imgval = data.response.imgUrl;
+            }else{
+                imgval += ","+data.response.imgUrl;
+            }
+            $('#testimg3').val(imgval);
+        });
+
+    }
+
+    //文件上传--资质证书
+    function uploadify2(){
+        $('#certification').fileinput({
+            language: 'zh', //设置语言
+            uploadUrl: '../img/updaloadcertification', //上传的地址
+            allowedFileExtensions: ['jpg', 'png', 'jpeg', 'gif', 'bmp'],//接收的文件后缀
+            showUpload: true, //是否显示上传按钮
+            showCaption: false,//是否显示标题
+            browseClass: "btn btn-primary", //按钮样式
+            maxFileCount: 5, //表示允许同时上传的最大文件个数
+            enctype: 'multipart/form-data',
+            validateInitialCount:true,
+            previewFileIcon: "<i class='glyphicon glyphicon-king'></i>",
+            msgFilesTooMany: "选择上传的文件数量({n}) 超过允许的最大数值{m}！",
+        }).on('fileuploaded', function(event, data, previewId, index) {
+            var imgval = $('#testimg2').val();
+            if(imgval == null || imgval == "" || imgval == undefined){
+                imgval = data.response.imgUrl;
+            }else{
+                imgval += ","+data.response.imgUrl;
+            }
+            $('#testimg2').val(imgval);
+        });
+
+    }
+
+
+</script>
+</body>
+</html>

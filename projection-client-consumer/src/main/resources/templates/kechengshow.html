@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../js/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../js/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="../js/bootStrap-addTabs/bootstrap.addtabs.css" rel="stylesheet">
+    <link href="../js/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet">
+    <link href="../js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../js/bootstrap-dialog/dist/css/bootstrap-dialog.css" rel="stylesheet">
+    <link href="../js/bootstrap-fileinput/css/fileinput.css" rel="stylesheet">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+    <script src="../js/bootStrap-addTabs/bootstrap.addtabs.js"></script>
+    <script src="../js/bootstrap-table/dist/bootstrap-table.js"></script>
+    <script src="../js/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="../js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="../js/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../js/bootstrap-dialog/dist/js/bootstrap-dialog.js"></script>
+    <script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+</head>
+<body>
+<div>
+<div>
+    订单状态：
+<input type="radio" name="status" value="-1" checked> 全部订单
+<input type="radio" name="status" value="2"> 已付款
+<input type="radio" name="status" value="1"> 未付款
+</div>
+<input id="name"  placeholder="请输入课程名称" >
+<input type="button" class="btn btn-primary" onclick="searchOrder()" value="查询">
+</div>
+<!--<input type="button" class="btn btn-primary" onclick="addOrder()" value="新增">-->
+<table id="order-table"></table>
+<div id="add-div"></div>
+
+
+<script type="text/javascript">
+    $(function(){
+        $("#order-table").bootstrapTable({
+            url:"../order/queryorderList",
+            striped: true,//隔行变色
+            minimumCountColumns:2,//最小留几列 默认值1
+            pagination:true,//开启分页
+            paginationLoop:true,//开启分页无限循环
+            pageNumber:1,//当前页数
+            pageSize:8,//每页条数
+            pageList:[1,5,10,20],//如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录。
+            sidePagination:"server",//
+            method:'get',//发送请求的方式
+            contentType:"application/x-www-form-urlencoded",//必须的否则条件查询时会乱码
+            queryParams:function(obj){
+                //alert($("#name").val())
+                //alert(this.pageNumber)
+                //alert($("[name='status']:checked")[0].value);
+                return {
+                    status:$("[name='status']:checked")[0].value,
+                    coursename:$("#name").val(),
+                    page:this.pageNumber,//当前页
+                    rows:this.pageSize //每页条数
+
+                }
+            },
+            columns: [
+                {field: 'id',title:'编号', width:100},
+                {field: 'orderNumber',title:'订单编号', width:100},
+                {field: 'coursename',title: '课程名称', width: 100},
+                {field: 'courselevel',title: '课程等级', width: 100},
+                {field: 'teacher',title: '老师',width: 100},
+                {field: 'teacherlevel',title: '老师等级',width: 100},
+                {field: 'price',title: '价格',width: 100},
+                {field: 'status',title: '订单状态',width: 100,
+                    formatter:function(val,row,index) {
+                        if (val == 1) {
+                            return "未付款";
+                        }
+                        if (val == 2) {
+                            return "已付款";
+                        }
+                    }
+                },
+                {field: 'createtime',title: '下单时间',width: 100},
+                {field: 'subjectname',title: '科目名称',width: 100},
+                {field: 'asc',title: '操作',width: 100,
+                    formatter:function(val,row,index){
+                    if(row.status==2){
+                        var but = "<input type='button' disabled onclick='qufukuan("+row.id+","+1+","+row.price+")' value='已付款'>";
+                    }else{
+                        var but = "<input type='button' onclick='qufukuan("+row.id+","+2+","+row.price+")' value='请付款'>";
+                    }
+                        return but;
+                    }
+                },
+            ]
+        })
+    })
+    qufukuan=function(id,status,price){
+        //alert(price);
+       // var flag = false;
+        location.href="../goAlipay?price="+price+"&id="+id+"&status="+status;
+       /* flag = true;
+        if(flag){
+            location.href="../order/update?id="+id+"&status="+status;
+        }*/
+    }
+  /*  update = function(id,status){
+
+    }*/
+    function searchOrder(){
+        $("#order-table").bootstrapTable("refresh",{'pageNumber':1});
+    }
+    function addOrder(){
+        BootstrapDialog.show({
+            title: '新增订单',
+            message: $('<div></div>').load('../order/toadd'),
+            buttons: [{
+                label: '提交',
+                action: function(dialog) {
+                    $.ajax({
+                        url:"../order/addorder",
+                        type:"post",
+                        data:$("#addForm").serialize(),
+                        success:function(msg){
+                            if(msg>0){
+                                dialog.close();
+                                $("#order-table").bootstrapTable("refresh",{'pageNumber':1});
+                            }
+                        }
+                    })
+                }
+            }, {
+                label: '取消',
+                action: function(dialog) {
+                    dialog.close();
+                }
+            }]
+        });
+    }
+</script>
+</body>
+</html>

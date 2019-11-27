@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="../js/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../js/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="../js/bootStrap-addTabs/bootstrap.addtabs.css" rel="stylesheet">
+    <link href="../js/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet">
+    <link href="../js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../js/bootstrap-dialog/dist/css/bootstrap-dialog.css" rel="stylesheet">
+    <link href="../js/bootstrap-fileinput/css/fileinput.css" rel="stylesheet">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+    <script src="../js/bootStrap-addTabs/bootstrap.addtabs.js"></script>
+    <script src="../js/bootstrap-table/dist/bootstrap-table.js"></script>
+    <script src="../js/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="../js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="../js/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../js/bootstrap-dialog/dist/js/bootstrap-dialog.js"></script>
+    <script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+
+
+</head>
+<body background="../img/qq.jpg">
+
+
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <center><h1>注册</h1></center>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row clearfix">
+        <div class="col-md-3 column">
+        </div>
+        <div class="col-md-6 column">
+            <form class="form-horizontal" id="re-form" role="form" action="../register" method="post">
+                <div class="form-group">
+                    <label for="firstname2" class="col-sm-2 control-label"><span class="glyphicon glyphicon-user"></span></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="firstname2" name="userName" placeholder="请输入用户名" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="p-id" class="col-sm-2 control-label"><span class="glyphicon glyphicon-earphone"></span></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="p-id" name="phoneNumber" placeholder="输入手机号码" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword2" class="col-sm-2 control-label"><span class="glyphicon glyphicon-lock"></span></label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="inputPassword2" name="passWord" placeholder="密码" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="c-id" class="col-sm-2 control-label" required> 验证码：</label>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" name="code" required id="c-id" onblur="phoneLogin()">
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="button"  id="g-c-id" onclick="getCode()" value="获取验证码">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" required>已阅读并同意《
+                                <button type="button" class="btn btn-default btn-link" onclick="goProtocol()" >用户服务协议</button>》
+                                <span id="c-sp"></span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+
+                        <button type="submit" class="btn btn-default btn-lg" >注册</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3 column">
+        </div>
+    </div>
+</div>
+
+<!--<div class="upload-image-list clearfix">
+    <div class="fileinput-button js-add-image"οnclick="addWebuploadCurrent($(this))">
+        <span class="cover_words">正面</span>
+        <div class="webuploader-pick">
+            <a class="fileinput-button-icon" href="javascript:;"></a>
+        </div>
+    </div>
+    <div class="fileinput-button js-add-image"οnclick="addWebuploadCurrent($(this))" style="float:right">
+        <span class="cover_words">反面</span>
+        <div class="webuploader-pick">
+            <a class="fileinput-button-icon" href="javascript:;"></a>
+        </div>
+    </div>
+</div>-->
+
+<!--
+</div>
+    <div class="correct-message clearfix">
+        <div class="message-title pull-left">上传身份证照片：</div>
+        <div class="left-image-box pull-left">
+            <div class="upload-image-box">
+                <input type="file" class="upload-image" id="input-image" accept="image/jpg, image/png" />
+                <div class="image-inbox" id="image-left">
+                    <div class="add-icon-image"></div>
+                    <div class="add-text">上传照片</div>
+                </div>
+            </div>
+            <img src="#" alt="" id="left-img">
+            <div class="left-delete-image">+</div>
+            <div class="card-text card-the-right">（身份证正面）</div>
+        </div>
+        <div class="right-image-box pull-left other-image-box">
+            <div class="upload-image-box">
+                <input type="file" id="input-image-other" class="upload-image" accept="image/jpg, image/png" />
+                <div class="image-inbox" id="image-right">
+                    <div class="add-icon-image"></div>
+                    <div class="add-text">上传照片</div>
+                </div>
+            </div>
+            <img src="#" alt="" id="right-img">
+            <div class="right-delete-image">+</div>
+            <div class="card-text card-the-right">（身份证反面）</div>
+        </div>
+    </div>
+-->
+
+
+
+    <script type="text/javascript">
+
+
+
+        var wait=30;
+        function time(o) {
+            //alert($("#p-id").val())
+            $.ajax({
+                url:"../getCode?mobile="+$("#p-id").val(),
+                type:"post",
+                success:function(data){
+
+                }
+            })
+
+            var c = document.getElementById("c-id");
+            if (wait == 0) {
+                c.setAttribute("readonly",true);
+                o.removeAttribute("disabled");
+                o.value="获取验证码";
+                wait = 30;
+            } else {
+                c.removeAttribute("readonly");
+                o.setAttribute("disabled", true);
+                o.value="重新发送(" + wait + ")";
+                wait--;
+                setTimeout(function() {
+                        time(o)
+                    },
+                    1000)
+            }
+        }
+        document.getElementById("g-c-id").onclick=function(){time(this);}
+
+        function phoneLogin(){
+           // alert($("#p-id").val())
+           // alert($("#c-id").val()+"code")
+            var call_no = $('#p-id');
+            if(call_no.val() && /^1[3|4|5|7|8]\d{9}$/.test(call_no.val())){
+
+            } else{
+                call_no.focus();
+                alert('手机号码格式不正确！');
+                return false;
+            }
+
+            $.ajax({
+                url:"../phoneLogin?phonenum="+$("#p-id").val()+"&code="+$("#c-id").val(),
+                type:"post",
+                success:function(msg){
+                    if(msg<0){
+                       // $("#c-sp").html("<font color='red'>验证码错误</font>")
+                        alert("验证码错误！")
+                    }
+                }
+
+            })
+
+        }
+
+
+        //申请
+      /* function register(){
+
+
+            var call_no = $('#p-id');
+            if(call_no.val() && /^1[3|4|5|7|8]\d{9}$/.test(call_no.val())){
+
+            } else{
+                call_no.focus();
+                alert('手机号码格式不正确！');
+                return false;
+            }
+
+            //提交表单
+            $.ajax({
+                url:"../register",
+                type:"post",
+                data:$("re-form").serialize(),
+                success:function (msg) {
+                    if(msg>0){
+                        alert("恭喜您注册成功！")
+                    }
+                }
+
+            })
+        }*/
+
+        function goProtocol() {
+            location.href="../goProtocol";
+        }
+
+
+    </script>
+
+<!--
+<script>
+    function webupload_pic() {
+        var maxsize = 5000;
+        $.getScript("./Public/js/plugins/webuploader/webuploader.js", function() {
+            if (!WebUploader.Uploader.support()) {
+                alert('您的浏览器不支持上传功能！如果你使用的是IE浏览器，请尝试升级 flash 播放器');
+            }
+            var uploader = WebUploader.create({
+                multiple: false,
+                auto: true,
+                swf: "./Public/js/plugins/webuploader/Uploader.swf",
+                server: "ajax.php",
+                pick: {
+                    id: '.js-add-image',
+                    innerHTML: ''
+                },
+                accept: {
+                    title: 'Images',
+                    extensions: 'gif,jpg,jpeg,png',
+                    mimeTypes: 'image/*'
+                },
+                fileSingleSizeLimit: maxsize * 1024 * 1024,
+                duplicate: true,
+                formData: {
+                    code: 'identity',
+                }
+
+            });
+            //上传时
+            uploader.on('fileQueued', function(file) {
+                var item_progress = "<div class='progress' id='" + file['id'] + "'><span class='bar'></span><span class='percent'>0%</span></div></li>";
+                $(".webupload_current").prepend(item_progress);
+
+            });
+            //上传中
+            uploader.on('uploadProgress', function(file, percentage) {
+                var percent = parseFloat(percentage * 100);
+                $("#" + file.id).find('.bar').css({"width": percent + "%"});
+                $("#" + file.id).find(".percent").text(percent + "%");
+
+            });
+
+            uploader.on('uploadBeforeSend', function(block, data) {
+                data.maxsize = maxsize;
+            });
+            //上传成功后
+            uploader.on('uploadSuccess', function(file, response) {
+                $("#" + file.id).remove();
+                $(".webupload_current").prepend("<img class='img_common' src=" + "./" + response.pic + " data-pic=" + response.pic + " alt='身份证照片'/>")
+            });
+
+            uploader.on('uploadError', function(file, reason) {
+                alert("上传失败！请重试。");
+            });
+        });
+    }
+
+    formData: {
+        code: 'identity'
+    }
+</script>
+-->
+</body>
+</html>

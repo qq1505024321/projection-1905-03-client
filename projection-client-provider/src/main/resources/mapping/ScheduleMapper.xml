@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.mapper.ScheduleMapper" >
+    <sql id="selectSQL">
+        <where>
+            <if test="ss.teacher!=null and ss.teacher!=''">
+                and teacher like '%${ss.teacher}%'
+            </if>
+        </where>
+    </sql>
+    <select id="queryTotal" resultType="long">
+        select count(*) from t_schedule
+        <include refid="selectSQL"></include>
+    </select>
+
+    <select id="queryorderList" resultType="com.jk.model.Schedule">
+        select * from t_schedule
+        <include refid="selectSQL"></include>
+        order by starttime desc
+        limit #{start},#{rows}
+    </select>
+
+    <insert id="addschedule" parameterType="com.jk.model.Schedule">
+        insert into t_schedule(claname,img,teacher,claprice,starttime)
+         values(#{claname},#{img},#{teacher},#{claprice},#{starttime})
+    </insert>
+</mapper>

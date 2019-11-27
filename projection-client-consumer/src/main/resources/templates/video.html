@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>高考数学大招秀+2019高考数学真题精</title>
+
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap-bootbox/bootbox.js"></script>
+    <script src="../js/bootstrap3/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap3/css/bootstrap.css">
+    <script src="../js/bootstrap-table/dist/bootstrap-table.js"></script>
+    <script src="../js/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
+    <link href="../js/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet">
+    <script src="../js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="../js/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link href="../js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+
+    <script src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+    <script src="../js/bootStrap-addTabs/bootstrap.addtabs.js"></script>
+    <script src="../js/bootstrap-dialog/dist/js/bootstrap-dialog.js"></script>
+
+
+
+    <link href="../js/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../js/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="../js/bootStrap-addTabs/bootstrap.addtabs.css" rel="stylesheet">
+
+
+    <link href="../js/bootstrap-dialog/dist/css/bootstrap-dialog.css" rel="stylesheet">
+    <link href="../js/bootstrap-fileinput/css/fileinput.css" rel="stylesheet">
+
+
+    <style type="text/css">
+        .pointer{
+            cursor: pointer;
+        }
+        body{text-align: center}
+        p.indent{ padding-left: 1.8em }
+    </style>
+</head>
+<body class="pointer">
+
+<input id="unamev" type="hidden" th:text="${session.login}">
+
+<div class="panel panel-default">
+    <nav class="navbar navbar-default navbar-static-top clearfix" style="background:url('../img/pwd.jpg');width: 100%">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                    <img alt="Brand" src="../img/logo.png" style="width: 82px;height: 80px">
+            </div>
+
+            <!-- 标题内容 -->
+            <div class="navbar-right" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav sf-menu felink-menu" data-type="navbar">
+                    <li><a href="../index">首页</a></li>
+                </ul>
+
+
+                <ul  class="nav navbar-nav navbar-right">
+                    <li>
+                        <!--ID:<div th:text="${session.userObj.userId}"></div>   取Id-->
+                        <!--ID:<div th:text="${session.userObj.userId}"></div>   取Id-->
+
+                        <b>欢迎</b><a style="color: #4c2395"><div th:text="${session.login}"></div></a><b>登录</b>
+
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+</div>
+
+<div class="panel panel-body">
+    <div class="row">
+        <div class="col-xs-6 col-md-6">
+            <video id="video" class="pointer" controls="controls" style="width:100%;height:100%">
+                <source src="../video/video2.mp4" type="video/ogg">
+            </video>
+            <ul class="list-group">
+                <li class="list-group-item">最近在学&nbsp;&nbsp;1617人&nbsp;&nbsp;累计1300人&nbsp;&nbsp;好评度99%</li>
+            </ul>
+        </div>
+        <div class="col-xs-6 col-md-6">
+            <h2>高考数学大招秀+2019高考数学真题精</h2>
+
+            <ul class="list-group">
+                <li class="list-group-item"><h4 style="color: #8c8c8c">5315人购买 &nbsp;&nbsp;好评度100%</h4></li>
+                <li class="list-group-item"><a>数学</a>&nbsp;&nbsp;<a>一轮</a></li>
+                <li class="list-group-item">2019高考数学真题 支持随到随学，24年05月过期</li>
+                <li class="list-group-item"><h3 style="color: #ac2925">免费</h3></li>
+                <li class="list-group-item">
+                    <button type="button" class="btn btn-primary" onclick="baoming()">立即报名</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-default" onclick="shoucang()"><i class="glyphicon glyphicon-credit-card"></i>收藏</button>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-6 col-md-8">
+
+            <div class="tabs btn-group btn-group-lg btn-group-justified" role="tablist">
+                <a data-toggle="tab" style="background: white" role="tab" aria-controls="kecheng" class="btn btn-info active" href="#kecheng"><p style="color: #0f0f0f">课程概述</p></a>
+                <a data-toggle="tab" style="background: white" role="tab" aria-controls="mulu" class="btn btn-info" href="#mulu"> <p style="color: #0f0f0f">目录</p></a>
+                <a data-toggle="tab" style="background: white" role="tab" aria-controls="pinglun" class="btn btn-info" href="#pinglun"><p style="color: #0f0f0f">评论</p></a>
+            </div>
+            <ul class="tab-content tabCon">
+                <li role="tabpanel" class="fade in active tab-pane" id="kecheng">
+                    <img src="../img/xiazai.jpg" style="width: 100%">
+                </li>
+
+                <li role="tabpanel" class="fade tab-pane" id="mulu">
+                    <dl>
+                <li><b>01 &nbsp;&nbsp;   2019全国Ⅰ理科真题+微信supermath987</b></li>
+                <li>【录播】2019全国Ⅰ理科真题1-8<p style="color: #8c8c8c">(20分钟)</p></li>
+                <li><b>02 &nbsp;&nbsp;   2019全国Ⅱ理科真题</b></li>
+                <li>【录播】2019全国Ⅱ理科真题1-8<p style="color: #8c8c8c">(8月3日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅱ理科真题9-11<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅱ理科真题12<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅱ理科真题13<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅱ理科真题14<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅱ理科真题15<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅱ理科真题16<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅱ理科真题17<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅱ理科真题18<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅱ理科真题18<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅱ理科真题19<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅱ理科真题20<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅱ理科真题21<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li><b>03 &nbsp;&nbsp; 2019全国Ⅲ理科真题</b></li>
+                <li>【录播】2019全国Ⅲ理科真题1-8<p style="color: #8c8c8c">(8月3日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅲ理科真题1-8<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅲ理科真题1-8<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅲ理科真题1-8<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅲ理科真题1-8<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅲ理科真题1-8<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅲ理科真题1-8<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅲ理科真题1-8<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅲ理科真题1-8<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅲ理科真题1-8<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅲ理科真题1-8<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅲ理科真题1-8<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【录播】2019全国Ⅲ理科真题1-8<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li><b>04 &nbsp;&nbsp;   互联网专题</b></li>
+                <li>【回放】Git服务搭建与版本分支管理<p style="color: #8c8c8c">(8月3日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li><b>05 &nbsp;&nbsp;   互联网专题</b></li>
+                <li>【回放】Git服务搭建与版本分支管理<p style="color: #8c8c8c">(8月3日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li><b>06 &nbsp;&nbsp;   互联网专题</b></li>
+                <li>【回放】Git服务搭建与版本分支管理<p style="color: #8c8c8c">(8月3日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven基本概念与核心配置<p style="color: #8c8c8c">(8月5日&nbsp;20:10-22:00)</p></li>
+                <li>【回放】Maven私服使用与插件开发<p style="color: #8c8c8c">(8月8日&nbsp;20:10-22:00)</p></li>
+                </dl>
+                </li>
+                <li role="tabpanel" class="fade tab-pane" id="pinglun">
+                    <div class="table" id="pinglun1"></div>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="col-xs-6 col-md-4">
+            <ul>
+                <li>
+                    <div class="table" id="userTable"></div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+
+
+</body>
+<script>
+
+    function baoming(){
+        var unamev = $("#unamev").val();
+        if(unamev == null || unamev == ""){
+            alert("您需要登录，才能报名！")
+            location.href="../toLogin";
+        }
+    }
+    function shoucang(){
+        var unamev = $("#unamev").val();
+        if(unamev == null || unamev == ""){
+            alert("您需要登录，才能收藏！")
+            location.href="../toLogin";
+        }
+    }
+
+
+    $(function(){
+        inituserTable();
+    })
+
+
+    function inituserTable(){
+        $("#userTable").bootstrapTable({
+            url:'../findUser',
+            method:'post',
+            contentType:'application/x-www-form-urlencoded',//post请求按照表单方式
+            pagination:true,
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页
+            pageNumber:1,
+            pageList:[2,4,6,8,10],
+            pageSize:10,
+            clickToSelect: true, //是否启用点击选中行
+            queryParams:function(){
+
+                return {
+                    page:this.pageNumber,
+                    rows:this.pageSize
+                }
+            },
+            columns:[
+                {field:'teachername',title:'教师'},
+                {field:'createtime',title:'加入时间'},
+                {field:'teacherphone',title:'QQ账号'},
+                {field:'teachershow',title:'详情介绍'},
+            ]
+        })
+    }
+
+
+    $('.tabs .btn').click(function () {
+        if ($(this).hasClass('active')) {
+            return false;            }
+        $('.tabs .btn').removeClass('active');
+        $(this).addClass('active');
+    });
+
+    $('.date').datetimepicker({
+        language:'zh-CN',
+        format:'yyyy-mm-dd hh:ii:ss',
+        minView:'month',
+        initialDate:new Date(),
+        autoclose:true,
+        todayBtn:true
+    })
+
+</script>
+
+</html>

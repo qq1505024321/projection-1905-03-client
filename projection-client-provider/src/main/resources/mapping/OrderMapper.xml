@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.mapper.OrderMapper" >
+  <sql id="selectSQL">
+      <if test="oo.coursename!=null and oo.coursename!=''">
+      and coursename like '%${oo.coursename}%'
+    </if>
+
+    <if test="oo.status!=null and oo.status>0">
+      and status = ${oo.status}
+    </if>
+  </sql>
+  <select id="queryTotal" resultType="long">
+    select count(*) from t_order
+    where userid = #{userId}
+    <include refid="selectSQL"></include>
+  </select>
+
+  <select id="queryorderList" resultType="com.jk.model.Orders">
+    select * from t_order
+    where userid = #{userId}
+    <include refid="selectSQL"></include>
+    limit #{start},#{rows}
+  </select>
+
+  <insert id="addOrder" parameterType="com.jk.model.Orders">
+    insert into t_order(orderNumber,coursename,courselevel,teacher,teacherlevel,price,status,createtime,subjectname)
+     values(#{orderNumber},#{coursename},#{courselevel},#{teacher},#{teacherlevel},#{price},#{status},#{createtime},#{subjectname})
+</insert>
+  <update id="update">
+    update t_order set status=#{status} where id = #{id}
+  </update>
+</mapper>

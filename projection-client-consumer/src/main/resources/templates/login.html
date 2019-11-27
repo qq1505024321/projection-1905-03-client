@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>奔奔在线教育</title>
+    <link rel="stylesheet" href="../css2/index.css">
+    <!--  <link rel="stylesheet" type="text/css" href="../css2/animate.min.css">-->
+    <link rel="stylesheet" href="../css2/style.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <style>.inputCover input {
+        width: 116px;
+        height: 24px;
+        margin-top: 10px;
+        border: 1px solid #eee;
+        border-radius: 3px;
+        margin-left: 10px;
+        text-indent: 1em;
+    }
+    .inputCover a {
+        display: block;
+        width: 86%;
+        height: 30px;
+        line-height: 30px;
+        background: #000000;
+        text-align: center;
+        color: #fff;
+        text-align: center;
+        margin: 0 auto;
+        border-radius: 3px;
+        margin-top: 3px;
+    }
+    .inputCover p {
+        margin-left: 10px;
+        visibility: hidden;
+    }
+    input::-webkit-input-placeholder {
+        /* WebKit browsers */
+        color: #b5b9bc;
+    }
+    :-moz-placeholder {
+        /* Mozilla Firefox 4 to 18 */
+        color: #b5b9bc;
+    }
+    ::-moz-placeholder {
+        /* Mozilla Firefox 19+ */
+        color: #b5b9bc;
+    }
+    :-ms-input-placeholder {
+        /* Internet Explorer 10+ */
+        color: #b5b9bc;
+    }
+    /*banner上点击咨询模块*/
+    .banner {
+        background: url("") no-repeat center;
+    }
+    .banCont {
+        width: 976px;
+        padding-top: 112px;
+        color: #fff;
+        font-size: 14px;
+        margin: 0 auto;
+    }
+    .btnContLt {
+        width: 500px;
+        float: left;
+        margin-top: 0;
+        margin-left: 15px;
+        text-align: left;
+    }
+    .btnContLt h2 {
+        font-size: 38px;
+        line-height: 76px;
+        text-shadow: -1px -2px 10px rgba(0,0,0,0.4);
+        margin: 0;
+        text-align: center;
+    }
+    .btnContLt p {
+        line-height: 30px;
+        margin-top: 20px;
+        font-size: 15px;
+    }
+    .publicBut .colwhite {
+        margin-left: 0;
+    }
+    .bannerBut {
+        text-align: left;
+    }
+    .home_banner_btn {
+        margin: 32px 0 0;
+    }
+    .btnContRt {
+        width: 232px;
+        height: 325px;
+        padding: 20px 40px;
+        float: left;
+        background: rgba(255,255,255,0.21);
+        border-radius: 5px;
+        color: #333;
+        text-align: center;
+        box-shadow: -1px -2px 10px rgba(0,0,0,0.2);
+        margin-left: 137px;
+        position: relative;
+        z-index: 99;
+    }
+    .btnContRt h3 {
+        font-size: 24px;
+        line-height: 40px;
+        color: #ffffff;
+    }
+    .btnContRt p {
+        color: #f9fcff;
+        line-height: 28px;
+        margin-bottom: 6px;
+    }
+    .btnContRt input {
+        display: inline-block;
+        width: 162px;
+        height: 38px;
+        line-height: 38px;
+        border: 1px solid #eee;
+        margin-top: 20px;
+        border-radius: 3px;
+        padding-left: 66px;
+        font-size: 14px;
+    }
+    .btnContRt .tips {
+        text-align: left;
+        color: #ff3333;
+        line-height: 28px;
+        visibility: hidden;
+    }
+    .btnContRt button {
+        display: inline-block;
+        width: 232px;
+        height: 48px;
+        line-height: 48px;
+        background: #31ADE6;
+        border: 0;
+        border-radius: 3px;
+        color: #fff;
+        font-size: 16px;
+        cursor: pointer;
+    }
+    .div-input {
+        position: relative;
+    }
+    .icon {
+        display: inline-block;
+        width: 33px;
+        height: 20px;
+        background: url("") no-repeat;
+        position: absolute;
+        top: 30px;
+        left: 18px;
+    }
+    .icon.adress {
+        width: 39px;
+        background: url("") no-repeat;
+        left: 16px;
+    }
+    .div-input .phone {
+        background-position: 0 -37px;
+    }
+    .navLeft {
+        display: none;
+    }</style>
+
+    <script type="text/javascript" src="../js/jquery.min.js"></script>
+</head>
+<body><!--<input type="hidden" value="1701" id="yxpageId">-->
+
+<div class="home_head">
+    <!-- <div class="home_head_logo fl"></div>-->
+    <ul class="home_head_nav_fl fl">
+        <li><a href="#methods1" class="on">首页</a></li>
+        <li><a href="#kdd">奔奔在线教育平台</a></li>
+        <li><a href="#kdd1"></a></li>
+        <li><a href="#methods4"></a></li>
+        <li><a href="#methods5"></a></li>
+    </ul>
+    <ul class="home_head_nav_fr fr">
+        <li class="home_head_free tc"></li>
+        <li class="home_nav_tel">
+
+        </li>
+    </ul>
+</div>
+<div class="home_banner tc">
+    <div id="particles-js">
+        <!--  <canvas class="particles-js-canvas-el" style="width: 100%;height: 100%" width="1200" height="620"/>-->
+    </div>
+    <div class="mc">
+        <div class="banCont">
+            <div class="btnContLt">
+                <h2>在线教育平台</h2>
+                <h2>满足各类教学,开通即用</h2>
+                <div class="home_banner_btn mc banner_btn" style="overflow: visible;"></div>
+            </div>
+
+
+            <div class="btnContRt">
+                <h3>- 在线教学 免费试用 -</h3>
+                <form  id="form-login" action="../login" method="post">
+
+                    <div class="div-input"><i class="icon name"></i> <input type="text"name="username" id="username-id"  required placeholder="用户名"></div>
+                    <div class="div-input"><i class="icon phone"></i> <input class="input-phone"  type="password" name="password" required placeholder="密码"></div>
+                    <div class="wthree-text">
+                        <ul>
+                            <li><br><a  href="javascript:toEditPwd()">忘记密码 ?</a> </li>
+                        </ul>
+                        <div class="clear"> </div>
+                    </div>
+                    <!-- <p class="tips">请填写正确的手机号！</p>--><input type="submit" value="LOGIN">
+                    <!--    <input type="button" value="登录" class="btn2" onclick = "login();" />-->
+                    <!-- <div class="div-input"><i class="icon adress"></i> <input class="input-adress" type="submit" value="登录"></div>-->
+                </form>
+                <br>
+                <p>创建一个账号? <a href="javascript:toRegister()"> 立即注册!</a></p>
+            </div>
+
+
+
+
+            <!--  <div class="btnContRt">
+                  <h3>- 在线教学 免费试用 -</h3>
+            &lt;!&ndash;      <p>无需自主开发、直接上线使用</p>&ndash;&gt;
+
+
+                  <form  action="../login" method="post">
+
+                  <div class="div-input"><i class="icon name"></i> <input type="text"  name="username" id="username-id"  required placeholder="用户名"></div>
+                  <div class="div-input"><i class="icon lock"></i> <input class="input-adress" maxlength="64" id="sqAdress15"
+                                                                            type="password" name="password" placeholder="密码"></div>
+                  <div class="wthree-text">
+                      <ul>
+                          <li><br><a  href="javascript:toEditPwd()">忘记密码 ?</a> </li>
+                      </ul>
+                      <div class="clear"> </div>
+                  </div>
+                    &lt;!&ndash;  <div class="wthree-text"><input type="submit" value="登录"> </div>&ndash;&gt;
+                      <button>登录</button>
+                      <input type="submit" value="登录">
+                   &lt;!&ndash;   <p class="tips">请填写正确的手机号！</p><a href="javascript:void(0);" onclick="addSqContent(15);">
+                      <button>申请免费试用帐号</button></a>&ndash;&gt;
+
+                  </form>
+                  <br>
+                      <p>创建一个账号? <a href="javascript:toRegister()"> 立即注册!</a></p>
+              </div>-->
+        </div>
+    </div>
+</div>
+<!--<script src="../js2/index.js"></script>-->
+<script src="../js2/count.js"></script>
+<script src="../js/particles.js"></script>
+<script src="../js2/app.js"></script>
+
+<script type="text/javascript">
+    function toRegister(){
+        location.href="../toRegister";
+    }
+
+    function toEditPwd(){
+        //alert($("#username-id").val());
+        location.href="../toEditPwd?userName="+$("#username-id").val();
+
+    }
+    /*
+      function login() {
+          alert($("#form-login").serialize())
+          $.ajax({
+              url:"../login",
+              type:"psot",
+              data:$("#form-login").serialize(),
+              success:function (msg) {
+               alert(msg);
+
+              }
+          })
+
+      }*/
+</script>
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+    <link href="../js2/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../js2/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../js2/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="../js2/bootStrap-addTabs/bootstrap.addtabs.css" rel="stylesheet">
+    <link href="../js2/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet">
+    <link href="../js2/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../js2/bootstrap-dialog/dist/css/bootstrap-dialog.css" rel="stylesheet">
+    <link href="../js2/bootstrap-fileinput/css/fileinput.css" rel="stylesheet">
+
+    <script src="../js2/jquery.min.js"></script>
+    <script src="../js2/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js2/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+    <script src="../js2/bootStrap-addTabs/bootstrap.addtabs.js"></script>
+    <script src="../js2/bootstrap-table/dist/bootstrap-table.js"></script>
+    <script src="../js2/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="../js2/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="../js2/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../js2/bootstrap-dialog/dist/js/bootstrap-dialog.js"></script>
+    <script src="../js2/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js2/bootstrap-fileinput/js/locales/zh.js"></script>-->
+
+<!--
+    <script src="../js2/jquery.min.js"></script>
+    <link href="../css2/style.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="main-w3layouts wrapper">
+    <div class="main-agileinfo">
+        <div class="agileits-top">
+            <form  action="../login" method="post">
+                <input class="text" type="text" name="username" id="username-id" placeholder="姓名" required="">
+                <input class="text" type="password" name="password" placeholder="密码" required="">
+                <div class="wthree-text">
+                    <ul>
+                        <li>
+                         &lt;!&ndash;   <label class="anim">
+                                <input type="checkbox" class="checkbox" required="">
+                                <span> 记住 ?</span>
+                            </label>&ndash;&gt;
+                        </li>
+                        <li><a  href="javascript:toEditPwd()">忘记密码 ?</a> </li>
+                    </ul>
+                    <div class="clear"> </div>
+                </div>
+                <input type="submit" value="登录">
+            </form>
+            <p>创建一个账号? <a href="javascript:toRegister()"> 立即注册!</a></p>
+        </div>
+    </div>
+    <div class="w3copyright-agile">
+        <p><a href="http://www.sucaihuo.com" title=""></a></p>
+    </div>
+    &lt;!&ndash; //copyright &ndash;&gt;
+    <ul class="w3lsg-bubbles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+
+</div>
+
+<script type="text/javascript">
+    function toRegister(){
+        location.href="../toRegister";
+    }
+
+    function toEditPwd(){
+        //alert($("#username-id").val());
+        location.href="../toEditPwd?userName="+$("#username-id").val();
+
+    }
+</script>
+</body>-->
+</html>

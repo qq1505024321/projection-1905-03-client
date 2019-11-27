@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- Bootstrap 插件 css -->
+    <link href="../js/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Bootstrap 核心css -->
+    <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap TreeView css -->
+    <link href="../js/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+
+    <!-- Bootstrap addTabs css -->
+    <link href="../js/bootStrap-addTabs/bootstrap.addtabs.css" rel="stylesheet">
+
+    <!-- Bootstrap table css -->
+    <link href="../js/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet">
+    <!-- bootstrap-datetimepicker css -->
+    <link href="../js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet">
+
+    <!-- bootstrap-dialog css -->
+    <link href="../js/bootstrap-dialog/dist/css/bootstrap-dialog.css" rel="stylesheet">
+    <!-- bootstrap-fileinput css -->
+    <link href="../js/bootstrap-fileinput/css/fileinput.css" rel="stylesheet">
+
+
+</head>
+<body>
+<input type="button" class="btn btn-primary" onclick="addschedule()" value="新增">
+<input id="name"  placeholder="请输入讲师名称" >
+<input type="button" class="btn btn-primary" onclick="searchOrder()" value="查询">
+<table id="schedule-table"></table>
+<div id="add-div"></div>
+
+<!--jQuery核心js  -->
+<script src="../js/jquery.min.js"></script>
+<!-- bootstrap 核心js文件 -->
+<script src="../js/bootstrap/js/bootstrap.min.js"></script>
+<!-- bootStrap TreeView -->
+<script src="../js/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+
+<!-- bootStrap addTabs -->
+<script src="../js/bootStrap-addTabs/bootstrap.addtabs.js"></script>
+
+<!-- bootStrap table -->
+<script src="../js/bootstrap-table/dist/bootstrap-table.js"></script>
+<!-- bootStrap table 语言包中文-->
+<script src="../js/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
+
+<!-- bootstrap-datetimepicker -->
+<script src="../js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script src="../js/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+
+<!-- bootstrap-dialog -->
+<script src="../js/bootstrap-dialog/dist/js/bootstrap-dialog.js"></script>
+<!-- bootstrap-fileinput -->
+<script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+<script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+
+<script type="text/javascript">
+
+    $(function(){
+        $("#schedule-table").bootstrapTable({
+            url:"../schedule/queryscheduleList",
+            striped: true,//隔行变色
+            minimumCountColumns:2,//最小留几列 默认值1
+            pagination:true,//开启分页
+            paginationLoop:true,//开启分页无限循环
+            pageNumber:1,//当前页数
+            pageSize:2,//每页条数
+            pageList:[1,5,10,20],//如果设置了分页，设置可供选择的页面数据条数。设置为All 则显示所有记录。
+            sidePagination:"server",//
+            method:'get',//发送请求的方式
+            contentType:"application/x-www-form-urlencoded",//必须的否则条件查询时会乱码
+            queryParams:function(obj){
+                //alert($("#name").val())
+                //alert(this.pageNumber)
+                return {
+                    teacher:$("#name").val(),
+                    page:this.pageNumber,//当前页
+                    rows:this.pageSize //每页条数
+                }
+            },
+            columns: [
+                {field: 'id',title:'编号', width:100},
+                {field: 'claname',title:'课程名称', width:100},
+                {field: 'img',title:'图片', width:100,
+                    formatter: function(value,row,index){
+                    return "<img src='+../value+'>";
+                    }
+                },
+                {field: 'teacher',title: '讲师',width: 100},
+                {field: 'claprice',title: '课程价格', width: 100},
+                {field: 'starttime',title: '开课日期', width: 100,
+                    formatter: function(value,row,index){
+                        var date =new Date(value);
+                        var tol=date.toLocaleDateString(date);
+                        return tol;
+                    }
+                },
+            ]
+        })
+    })
+    function searchOrder(){
+        $("#schedule-table").bootstrapTable("refresh",{'pageNumber':1});
+    }
+    //新增
+    function addschedule(){
+        BootstrapDialog.show({
+            title: '新增',
+                action: function(dialog) {
+                    $.ajax({
+                        url:"../schedule/addschedule1",
+                        type:"post",
+                        //data:$("#addForm").serialize(),
+                        success:function(msg){
+                            if(msg>0){
+                                dialog.close();
+                                $("#order-table").bootstrapTable("refresh",{'pageNumber':1});
+                            }
+                        }
+                    })
+                }
+            }, {
+                label: '取消',
+                action: function(dialog) {
+                    dialog.close();
+                }
+
+        });
+    }
+</script>
+</body>
+</html>

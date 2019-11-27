@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../js/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../js/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="../js/bootStrap-addTabs/bootstrap.addtabs.css" rel="stylesheet">
+    <link href="../js/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet">
+    <link href="../js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../js/bootstrap-dialog/dist/css/bootstrap-dialog.css" rel="stylesheet">
+    <link href="../js/bootstrap-fileinput/css/fileinput.css" rel="stylesheet">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+    <script src="../js/bootStrap-addTabs/bootstrap.addtabs.js"></script>
+    <script src="../js/bootstrap-table/dist/bootstrap-table.js"></script>
+    <script src="../js/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="../js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="../js/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../js/bootstrap-dialog/dist/js/bootstrap-dialog.js"></script>
+    <script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+    <script src="../js/bootstrap-bootbox/bootbox.js"></script>
+</head>
+<body>
+
+
+
+<form id="editUser-form" method="post" action="../myOrder/editUser">
+    <input id="span-1" type="hidden"  th:value="${session.userObj.userId}" name="userId">
+    <input id="span-7" type="hidden"  th:value="${session.userObj.userType}" name="userType">
+    <input id="span-9" type="hidden"  th:value="${session.userObj.userName}" >
+    <input id="span-10" type="hidden"  th:value="${session.userObj.passWord}">
+    <input id="span-11" type="hidden"  th:value="${session.userObj.phoneNumber}">
+
+
+
+
+
+
+
+    <div id="showInfo">
+        <table>
+            <tr>
+                <td><input type="button" class="btn btn-primary" onclick="editUser()" value="编辑个人信息"></td>
+                <td><input type="button" class="btn btn-primary" onclick="opendiagog()" value="注册老师"></td>
+            </tr>
+            <tr>
+                <td>用户名：</td>
+                <td><span id="span-2" th:text="${session.userObj.userName}"></span></td>
+            </tr>
+            <tr>
+                <td>登录密码：</td>
+                <td><span id="span-3" th:text="${session.userObj.passWord}"></span></td>
+            </tr>
+            <tr>
+                <td>手机号：</td>
+                <td><span th:text="${session.userObj.phoneNumber}" id="span-5"></span></td>
+            </tr>
+        </table>
+    </div>
+
+
+
+</form>
+<script type="text/javascript">
+
+    function opendiagog(){
+        var userId = $("#userId").val();
+        bootbox.dialog({
+            title: "老师注册",
+            message: createAddContent("../page/toaddApplica"),
+            closeButton: true,
+            buttons: {
+                "success": {
+                    "label": "<i class='icon-ok'></i>保存",
+                    "className": "btn btn-success",
+                    "callback": function () {
+                        $.ajax({
+                            url: "../img/addApplica",
+                            type: "post",
+                            data: $("#saveForm").serialize(),
+                            success: function () {
+                                tankuang = BootstrapDialog.show({message:"申请已提交"});
+                                setTimeout(function(){tankuang.close()}, 2000);
+                            },
+                            error: function () {
+                                alert("后台错误，请使用debug调试！！！");
+                            }
+                        })
+
+                    }
+                },
+                "cancel": {
+                    "label": "<i class='icon-info'></i>取消",
+                    "className": "btn btn-warning",
+                    "callback": function () {
+                    }
+                }
+            }
+        })
+    }
+    var res;
+    function createAddContent(url){
+        $.ajax({
+            url:url,
+            async:false,
+            success:function(data){
+                res = data;
+            }
+        });
+        return res;
+    }
+
+    /*获得表格数据*/
+    var sp2 = $("#span-2").html();
+    var sp11 = $("#span-11").html();
+    function editUser() {
+        document.getElementById("showInfo").innerHTML =
+            "<table>"+
+            " <tr>"+
+            "<td colspan=\"2\" align='center'><font size='5' color='blue'>个人信息修改</font></td>"+
+            "</tr>"+
+            "<tr>"+
+            "<td>用户名：</td>"+
+            "<td><input name='userName' value='"+sp2+"' class=\"form-control\"></td>"+
+            "</tr>"+
+            "<tr>"+
+            "<td>登录密码：</td>"+
+            "<td><input id='mima' name='passWord' class=\"form-control\"></td>"+
+            "</tr>"+
+            "<tr>"+
+            "<td>确认密码：</td>"+
+            "<td><input id='password-edit' class=\"form-control\" onblur=\"regPwd2(this.value)\"/><span><font id=\"pwd-font2\" color=\"red\"></font></span></td>"+
+            "</tr>"+
+            "<tr>"+
+            "<td>手机号：</td>"+
+            "<td> <input name='phoneNumber' value='"+sp11+"' class=\"form-control\"></td>"+
+            "</tr>"+
+            "<tr>"+
+            "<td><input type='submit' class='btn btn-primary' value='确认'></td>"+
+            "<td><input type=\"button\" class=\"btn btn-primary\" onclick=\"javascript:history.go(0);\" value=\"取消\">"+
+            "</tr>"+
+            "</table>";
+
+    }
+
+
+    function regPwd2(editpwd2) {
+        var editpwd1 = $("#mima").val();
+
+        if(editpwd2!=editpwd1){
+            $("#pwd-font2").html("请确认密码");
+        }else {
+            $("#pwd-font2").html("");
+        }
+
+    }
+
+
+
+</script>
+</body>
+</html>

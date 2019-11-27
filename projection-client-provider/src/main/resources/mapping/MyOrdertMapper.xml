@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.mapper.MyOrderMapper" >
+
+    <sql id="searchSql2">
+            where t.userid = #{userId}
+    </sql>
+
+    <select id="getCount3" resultType="long">
+        select count(*) from t_order t
+        <include refid="searchSql2"/>
+    </select>
+
+    <select id="queryMyOrderByUser" resultType="com.jk.model.Orders">
+        select t.id,t.orderNumber,t.coursename,t.courselevel,t.createtime,t.studentname,t.orderNumber,t.price,t.`status`,t.subjectname,t.teacher,t.teacherlevel
+        from t_order t
+        <include refid="searchSql2"/>
+        order by createtime desc
+        limit #{start},#{rows}
+    </select>
+
+    <update id="editUser">
+        update t_user set userName = #{userName},passWord = #{passWord},phoneNumber = #{phoneNumber}
+        where userId = #{userId}
+    </update>
+
+</mapper>

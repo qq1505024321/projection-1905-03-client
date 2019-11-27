@@ -1,0 +1,522 @@
+
+<!--<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>个人中心|博学谷</title>
+
+    <link rel="stylesheet" href="https://www.boxuegu.com/static/style/header/header_new.css?v=1574220637550">
+    <link rel="stylesheet" href="https://www.boxuegu.com/static/style/footer/footer.css?v=1574220637550">
+    <link rel="stylesheet" href="https://www.boxuegu.com/static/style/public.css?v=1574220637550">
+    <link rel="stylesheet" href="https://www.boxuegu.com/static/style/normalize.css?v=1574220637550">
+    <link rel="stylesheet" href="https://at.alicdn.com/t/font_229347_g6yqwgxxkxj.css?v=1574220637550">
+
+
+    <link href="../js/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../js/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="../js/bootStrap-addTabs/bootstrap.addtabs.css" rel="stylesheet">
+    <link href="../js/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet">
+    <link href="../js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../js/bootstrap-dialog/dist/css/bootstrap-dialog.css" rel="stylesheet">
+    <link href="../js/bootstrap-fileinput/css/fileinput.css" rel="stylesheet">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+    <script src="../js/bootStrap-addTabs/bootstrap.addtabs.js"></script>
+    <script src="../js/bootstrap-table/dist/bootstrap-table.js"></script>
+    <script src="../js/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="../js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="../js/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../js/bootstrap-dialog/dist/js/bootstrap-dialog.js"></script>
+    <script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+
+</head>
+
+<body>
+<style></style>
+<header style="float:none">
+    <nav>
+        <div class="left">
+            <div class="logo">
+                <a href="https://www.boxuegu.com">
+                    <img src="/img/header/logo-white-d52c9f0203.png" alt=""></a>
+            </div>
+            <ul class="nav-list">
+                <li class="to-home">
+                    <a href="../toMain">首页</a></li>
+                <li>
+                    <a href="https://www.boxuegu.com/class/">就业班</a></li>
+                <li>
+                    <a href="https://www.boxuegu.com/promote/">在职提升课</a></li>
+                <li>
+                    <a href="https://www.boxuegu.com/all/">全部课程</a></li>
+                <li>
+                    <a href="https://www.boxuegu.com/news/">资讯</a></li>
+            </ul>
+        </div>
+        <div class="right">
+            <div class="input-box">
+                <span class="search-icon search-button iconfont icon-sousuo_huaban"></span>
+                <input id="search-input" placeholder="搜索课程内容" type="text"></div>
+            <div class="login-box">
+                <a href="javascript:void(0)">
+                    <i class="news-icon new-info"></i>
+                </a>
+                <div class="login-line-1"></div>
+                <div class="login-before">
+                    <span class="login-btn login login-button">登录</span>
+                    <i class="login-line">/</i>
+                    <span class="register-btn regist register-button">注册</span></div>
+                <div class="login-after" data-isshow="0" id="phbox">
+                    <div class="photo">
+                        <img src="/img/header/pic_photo-2ceb63e2c0.png" alt=""></div>
+                    <div class="userName" title="bxg001">bxg001</div>
+                    <i class="more-icon"></i>
+                    <div class="user-box">
+                        <div class="no-data-box">
+                            <div class="img-box">
+                                <img src="/img/header/no_data-3baae7e76f.png" alt=""></div>
+                            <div class="info-box">
+                                <p class="info-p">没有学习的灵魂一定很空虚吧</p>
+                                <p class="info-a">
+                                    <a href="/">去学习</a></p>
+                            </div>
+                        </div>
+                        <div class="user-top-box">
+                            <div class="left-box">最近在学</div>
+                            <ul class="right-box" id="recent-learn-list"></ul>
+                        </div>
+                        <div class="user-bottom-box">
+                            <div class="my-course-btn">
+                                <a href="/?anchor=course" rel="nofollow">我的课程</a></div>
+                            <span class="user-line"></span>
+                            <div class="my-order-btn">
+                                <a href="/personcenter.html?anchor=myorder" rel="nofollow">我的订单</a></div>
+                            <span class="user-line"></span>
+                            <div class="sign-out-btn">退出</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</header>
+<div class="tips1">
+    <div class="del-sure shoppinggo">
+        <div class="del-header">
+            <i class="iconfont icon-guanbi close"></i>
+        </div>
+        <p class="qxIntro">
+            <i class="iconfont icon-tanhao"></i>
+            <span>确定取消此订单记录?</span></p>
+        <div class="qxBtn">
+            <span class="qx" id="qxQuit">取消</span>
+            <span class="ok" id="qxSure">确定</span></div>
+    </div>
+</div>
+<div class="tips2">
+    <div class="del-sure shoppinggo">
+        <div class="del-header">
+            <i class="iconfont icon-guanbi close"></i>
+        </div>
+        <p class="qxIntro">
+            <i class="iconfont icon-tanhao"></i>
+            <span>确定删除此订单记录?</span></p>
+        <div class="qxBtn">
+            <span class="qx">取消</span>
+            <span class="ok">确定</span></div>
+    </div>
+</div>
+<div id="ps0">
+    <ul class="my-personcenter-nav" style="display:none">
+        <li class="my-personcenter-nav-1">
+            <a href="javascript:void (0)" class="hehe">个人中心</a></li>
+        <li class="glyphiconRight">
+            <span aria-hidden="true">></span></li>
+        <li class="my-personcenter-nav-2">
+            <a href="javascript:void (0)" class="bbbb"></a>
+        </li>
+    </ul>
+    <div class="personcenterPage clearfix">
+        <div class="left-nav">
+            <div class="intro"></div>
+            <ul>
+                <li data-pages="show">
+                    <i class="iconfont icon-ziyuan myNews" style="margin:0 13px 0 30px"></i>
+                    <a class="mynews" href="javascript:;">我的消息</a></li>
+                <li data-pages="none" class="buy">
+                    <i class="iconfont icon-wodedingdan" style="font-size:18px;margin:-2px 13px 0 28px"></i>
+                    <a href="javascript:;" class="myorder">我的订单</a></li>
+                <li data-pages="none" class="regisfee">
+                    <i class="iconfont icon-yubaomingfei" style="font-size:21px;margin:-4px 11px 0 26px"></i>
+                    <a href="javascript:;" class="myregisfee">预报名费</a></li>
+                <li data-pages="none" class="contract">
+                    <i class="iconfont icon-hetong" style="font-size:18px;margin:-3px 11px 0 28px"></i>
+                    <a href="javascript:;" class="myContract">我的合同</a></li>
+                <li data-pages="none" class="con">
+                    <i class="iconfont icon-youhuiquan" style="font-size:28px;margin:-9px 5px 0 23px"></i>
+                    <a href="javascript:;" class="myduihuan">优惠券</a></li>
+                <li data-pages="none">
+                    <i class="iconfont icon-xueyuan" style="margin:0 13px 0 28px"></i>
+                    <a class="mydata" href="javascript:;">个人设置</a></li>
+                <li data-pages="none" id="b47">
+                    <i class="iconfont icon-yijianfankui" style="margin:0 13px 0 28px"></i>
+                    <a class="idea" href="javascript:;">意见反馈</a></li>
+            </ul>
+        </div>
+        <div class="view-content">
+            <div class="rTips">系统繁忙，请稍候再试!</div>
+            <div class="mybuy clearfix">
+                <div class="right-title clearfix">
+                    <div class="act allorder">
+                        <span data-timequantum="0" title="全部订单">全部订单</span>
+                        <em></em>
+                        <p class="all-change">
+                            <a data-timequantum="0" style="display:none" title="全部订单">全部订单</a>
+                            <a data-timequantum="1" title="近三个月内订单">近三个月内订单</a>
+                            <a data-timequantum="2" title="今年内订单">今年内订单</a>
+                            <a data-timequantum="3" title="今年以前订单">今年以前订单</a></p>
+                    </div>
+                    <div data-orderstatus="0">待支付</div>
+                    <div data-orderstatus="1">已完成</div>
+                    <div data-orderstatus="-1">已关闭</div></div>
+                <div class="right-course clearfix">
+                    <div class="ordername">
+                        <span class="or1">订单详情</span>
+                        <span class="or2">订单金额</span>
+                        <span class="or4">已付金额</span>
+                        <span class="or5">交易状态</span>
+                        <span class="or6">操作</span></div>
+                    <div class="ordertable"></div>
+                </div>
+            </div>
+            <div class="view-content-content">
+                <div class="loadingImgWrap">
+                    <img class="loadingImg" src="/img/loading-09bd170611.gif" alt="">
+                    <p class="loadingWord">加载中</p></div>
+            </div>
+            <div class="myContractWarp">
+                <div class="myContractTitle">
+                    <span>我的合同</span></div>
+                <div class="myContractMain"></div>
+            </div>
+            <div class="myredeem">
+                <div class="redeemOk" style="display:none">兑换成功</div>
+                <div class="redeemInput">
+                    <input type="text" name="redeemNumber" id="redeemNumber" placeholder="请输入优惠券码">
+                    <div class="redeemBtn">兑换</div>
+                    <span id="redeemErrey"></span>
+                </div>
+                <div class="redeemList">
+                    <div class="redeemListTitle">
+                        <ul>
+                            <li class="yt" data-redeem="0">可使用
+                                <span class="countWrap">(
+                      <span class="count"></span>)</span></li>
+                            <li data-redeem="1">已使用</li>
+                            <li data-redeem="2">已过期</li></ul>
+                    </div>
+                    <div class="redeemListBody"></div>
+                    <div class="redeembottom">
+                        <p class="redeembottomTitle">*优惠券使用说明</p>
+                        <p class="redeembottomtishi">1、请在优惠券所示服务期内使用，逾期失效</p>
+                        <p class="redeembottomtishi">2、如您的订单在用券后24小时内未最终支付，则订单失效，优惠券自动返还。您也可以去往“我的订单”手动取消待支付订单，以收回优惠券</p>
+                        <p class="redeembottomtishi">3、如您的订单在用券后发生退款，优惠券不予以返还</p>
+                        <p class="redeembottomtishi">4、使用课程券可同时参与满减活动，满减额定按照减去优惠券价格计算</p></div>
+                </div>
+            </div>
+            <div class="view-content-notbodys"></div>
+            <div class="pages" style="display:none">
+                <div id="Pagination"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="answerForm">
+    <div class="modal-dialog modal-alert" role="document">
+        <div class="modal-answerForm">
+            <form method="POST" id="Myform3" onsubmit="return saveReport(event)" enctype="multipart/form-data">
+                <input type="hidden" name="projectName" value="online">
+                <input type="hidden" name="fileType" value="1">
+                <div class="myanswer-top">
+                    <div class="cymyanswerclose close" data-dismiss="modal" aria-label="Close">×</div>
+                    <div class="cymyanswerlogo">我来回答</div></div>
+                <div class="myanswer-bottom">
+                    <div class="myanswer-lo1">答案内容</div>
+                    <textarea class="txt answerFormtxt" maxlength="1000" placeholder="1000字以内"></textarea>
+                    <div class="interlocution-bottom">添加图片
+                        <input id="file2" type="file" name="attachment" style="cursor:pointer">
+                        <div class="file2_t" style="cursor:pointer"></div></div>
+                    <div class="interlocution-bottom-1"></div>
+                    <div class="myanswer_bottom_dv_2">
+                        <span class="myanswer-btn myanswerFormbtn">提交</span></div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="rrrrTips">图片仅限于BMP,PNG,JPEG,JPG格式</div>
+<div class="rrrrrTips">请选择图片</div>
+<div class="mask"></div>
+<div id="headImg" class="clearfix">
+    <div class="container clearfix">
+        <div class="img-title">
+            <p>头像设置</p>
+            <i class="iconfont icon-guanbi imgClose"></i>
+        </div>
+        <div class="img-box1">
+            <a href="javascript:void(0)" class="upload-img">
+                <p onclick="fileClick()">
+                    <span>+</span>选择图片</p></a>
+            <p>只支持BMP,PNG,JPEG,JPG,大小不超过1M</p>
+        </div>
+        <div class="imageBox">
+            <div class="thumbBox"></div>
+            <div class="spinner" style="display:none"></div>
+        </div>
+        <div class="action clearfix">
+            <div class="upload_pictures_bottom_upload" style="width:0;height:0"></div>
+            <div class="new-contentarea tc">
+                <div class="bbox clearfix">
+                    <span>滚动鼠标可调整头像大小</span>
+                    <a href="javascript:void(0)" class="upload-img reclick">
+                        <p onclick="fileClick()">重新上传</p></a>
+                </div>
+                <input type="file" name="upload-file" id="upload-file" accept=".bmp,.png,.jpeg,.jpg"></div>
+            <span class="btn-upload bbtn">确定</span>
+            <a href="javascript:;" class="btn-quit bbtn">取消</a></div>
+        <div class="cropped">
+            <div class="cropTitle">预览</div>
+            <div class="cropped-con"></div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="namePic">< div class = "pic"style = "background-image: url({{#pictures(img)}})"data - img = '{{#pictures(img)}}' >
+</div>
+<div class="picModal" title="上传头像" data-toggle="modal" data-target="#upload">
+    <i class="iconfont icon-xiangji"></i>
+</div>
+<div class="name" title="{{name}}">{{name}}</div>
+<div class="msg0" title="{{info}}" data-maxlengts="11">{{info}}</div>
+</script>
+<script src="js/spBox-ef676e8efe.js"></script>
+<script src="js/ajax-ce1624e601.js" charset="utf-8"></script>
+<script src="js/myContract-2884743dae.js" charset="utf-8"></script>
+<script src="js/personcenter-bb216102b4.js" charset="utf-8"></script>
+<script src="js/mydata-7732ad69a4.js"></script>
+<script src="js/myanswer-1b163eef5b.js"></script>
+<script src="js/mynews-de8b6dda49.js"></script>
+<div class="footerWarp">
+    <footer id="simple-footer" class="clearfix">
+        <div class="wrap">
+            <div class="simple-left">
+                <div class="first-area clearfix">
+                    <img class="footer-logo" src="./img/home/home-footer-logo-c4ab013f9f.png" alt="logo">
+                    <div class="left">
+                        <ul class="aboutus-list about-box clearfix">
+                            <a target="_blank" href="https://www.boxuegu.com/aboutus/">
+                                <li data-id="first">关于我们</li></a>
+                            <a target="_blank" href="https://www.boxuegu.com/job/">
+                                <li data-id="two">人才招聘</li></a>
+                            <a target="_blank" href="https://www.boxuegu.com/contact/">
+                                <li data-id="three">联系我们</li></a>
+                            <a target="_blank" href="https://www.boxuegu.com/faq/">
+                                <li data-id="four">常见问题</li></a>
+                        </ul>
+                    </div>
+                </div>
+                <div class="third-area clearfix">
+              <span>江苏传智播客教育科技股份有限公司 Copyright 2006-2019， All Rights Reserved &nbsp;
+                <a style="color:#466de2" href="http://www.beian.miit.gov.cn" target="_blank">苏ICP备16007882号-12 &nbsp;</a>
+                <a href="/img/footer/yyzz01-e7588e3932.jpg" target="_blank">营业执照 &nbsp;</a>
+                <a href="/img/footer/zzdx01-4147908db4.jpg" target="_blank">增值电信业务经营许可证</a></span>
+                </div>
+            </div>
+            <div class="second-area clearfix">
+                <div class="right clearfix">
+                    <div class="text">
+                        <ul class="icon-box clearfix">
+                            <li>
+                                <span class="hexagon"></span>
+                                <span class="iconfont icon-weixin1"></span>
+                                <span class="text">订阅号</span>
+                                <div class="wx-hover">
+                                    <span class="triangle"></span>
+                                    <img src="./img/home/sideWeixinBig-61ef58fa06.png" alt="app下载">
+                                    <span class="watch">关注微信公众号</span></div>
+                            </li>
+                            <li>
+                                <span class="hexagon"></span>
+                                <span class="iconfont icon-weixin1"></span>
+                                <span class="text">服务号</span>
+                                <div class="wx-hover">
+                                    <span class="triangle"></span>
+                                    <img src="./img/home/sideWeixinBig1-c0b56e2ab1.png" alt="app下载">
+                                    <span class="watch">关注微信服务号</span></div>
+                            </li>
+                            <li>
+                                <a rel="nofollow" href="http://weibo.com/u/5999622644?refer_flag=1001030102_&is_hot=1" target="_blank" class="weibo" title="点击关注博学谷微博">
+                                    <span class="hexagon"></span>
+                                    <span class="iconfont icon-weibo1"></span>
+                                    <span class="text">微博</span></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="download">
+                        <img src="./img/home/footerErma1-0afc7bbaab.png" alt="app下载">
+                        <span>APP下载</span></div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+<script src="js/basePath-9bddabcea6.js"></script>
+<script src="https://www.boxuegu.com/static/js/zhuge.js?v=1574220637550"></script>
+<script src="https://www.boxuegu.com/static/js/header/header_new.js?v=1574220637550"></script>
+<script src="https://www.boxuegu.com/static/js/footer/footer.js?v=1574220637550"></script>
+</body>
+
+</html>
+
+
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="../js/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../js/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="../js/bootStrap-addTabs/bootstrap.addtabs.css" rel="stylesheet">
+    <link href="../js/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet">
+    <link href="../js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link href="../js/bootstrap-dialog/dist/css/bootstrap-dialog.css" rel="stylesheet">
+    <link href="../js/bootstrap-fileinput/css/fileinput.css" rel="stylesheet">
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+    <script src="../js/bootStrap-addTabs/bootstrap.addtabs.js"></script>
+    <script src="../js/bootstrap-table/dist/bootstrap-table.js"></script>
+    <script src="../js/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
+    <script src="../js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="../js/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <script src="../js/bootstrap-dialog/dist/js/bootstrap-dialog.js"></script>
+    <script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+
+</head>
+<body>
+<!--编辑个人信息-->
+
+<a href="../myOrder/toEditUser">个人信息</a>
+<input type="button" class="btn btn-primary" onclick="toEditUser()" value="个人信息">
+
+<table class="table" id="myOrder-tab"></table>
+<script>
+    $(function(){
+        queryMyOrder();
+    })
+
+    function queryMyOrder(){
+
+
+        //$("#myOrder-tab").bootstrapTable("refresh",{'pageNumber':1});
+        //列表展示
+        $('#myOrder-tab').bootstrapTable({
+            toolbar:'#toolbar',
+            url:'../myOrder/queryMyOrder',//获取数据地址
+            pagination:true, //是否展示分页
+            pageList:[1, 6, 12, 18],//分页组件
+            pageNumber:1,
+            pageSize:8,//默认每页条数
+            //search:true,//是否显示搜索框
+            //searchText:'搜索',//初始化搜索文字
+            showColumns:false,//是否显示 内容列下拉框
+            showToggle:false,//是否显示 切换试图（table/card）按钮
+            showPaginationSwitch:false,//是否显示 数据条数选择框
+            showRefresh:true,//是否显示刷新按钮
+            detailView:false,//设置为 true 可以显示详细页面模式。
+            showFooter:false,//是否显示列脚
+            clickToSelect: true, //是否启用点击选中行
+            sidePagination:'server',//分页方式：client客户端分页，server服务端分页（*
+            striped:true,
+            queryParams:function(){
+                return{
+                    page:this.pageNumber,
+                    rows:this.pageSize,
+                    teacher:null
+                };
+            },
+            columns:[
+                [
+                    {field:'orderNumber',title:'编号'},
+                    {field:'subjectname',title:'科目名'},
+                    {field:'coursename',title:'课程名'},
+                    {field:'courselevel',title:'课程等级'},
+                    {field:'teacher',title:'老师姓名'},
+                    {field:'teacherlevel',title:'老师等级'},
+                    {field:'price',title:'价格'},
+                    {field:'status',title:'订单状态'},
+                    {field:'createtime',title:'订单时间'},
+                    {field:'status',title:'订单状态'},
+                     {field:'action',title:'操作',formatter:function(value,row,index){
+                             return '<button class="btn btn-link" onclick="deleteUserById('+ row.id +'\')" >查看订单详情</button>';
+                         }}
+                ]
+            ]
+        })
+    }
+
+</script>
+
+<script>
+    function toEditUser() {
+
+            BootstrapDialog.show({
+                title: '个人信息',
+                message: $('<div></div>').load('../myOrder/toEditUser'),
+                buttons: [{
+                    label: '保存',
+                    action: function(dialog) {
+                        //更改弹框内容
+                        //dialog.setMessage('message 1');
+                        $.ajax({
+                            url:"../myOrder/editUser",
+                            type:"post",
+                            data:$("#editUser-form").serialize(),
+                            success:function(msg){
+                                if(msg>0){
+                                    dialog.close();
+                                }
+                            }
+                        })
+
+
+                    }
+                }, {
+                    label: '关闭',
+                    action: function(dialog) {
+                        //更改弹框标题
+                        dialog.close();
+                        $("#search-table").bootstrapTable("refresh",{'pageNumber':1});
+                    }
+                }]
+            });
+        
+    }
+</script>
+
+<!--<script type="text/javascript">
+    javascript:document.body.contentEditable='true';document.designMode='on'; void 0
+</script>-->
+</body>
+
+</html>

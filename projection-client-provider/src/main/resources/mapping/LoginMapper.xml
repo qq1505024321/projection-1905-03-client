@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jk.mapper.LoginMapper" >
+
+    <select id="queryUserByName" resultType="com.jk.model.Users">
+      SELECT USERNAME,passWord,USERID,PHONENUMBER,USERTYPE
+      FROM T_USER
+      WHERE USERNAME = #{un}
+
+    </select>
+
+    <insert id="saveUser" >
+        insert into T_USER(userName,passWord,phoneNumber,userType,createTime)
+        values(#{userName},#{passWord},#{phoneNumber},1,now())
+
+    </insert>
+
+    <update id="updatePwdByUserNameAndPhoneNumber">
+       update T_USER
+       set passWord = #{pwd}
+       where userName = #{un} and phoneNumber = #{pn}
+
+    </update>
+
+    <select id="selectPowerByUser" resultType="java.util.List">
+        select p.href from t_user u
+        LEFT JOIN t_role r
+        ON u.userType=r.roleId
+        LEFT JOIN t_role_power rp
+        ON r.roleId=rp.roleId
+        LEFT JOIN t_power p
+        ON rp.powerId=p.id
+        where u.userId = #{uid}
+        and u.userType = #{userType}
+    </select>
+
+<select id="findFunctionId" resultType="java.util.Map">
+    select * from t_function
+</select>
+
+<select id="findCount" resultType="int">
+    select count(1) from t_application
+</select>
+
+<select id="findUser" resultType="com.jk.model.Teacher">
+    select * from t_application
+       limit #{start},#{rows}
+</select>
+
+<select id="findFufei" resultType="com.jk.model.Fufei">
+    select a.*,b.name typename from t_fufei a left join t_type b on b.id = a.type
+</select>
+</mapper>

@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:shiro="http://www.pollix.at/thymeleaf/shiro"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>奔奔在线教育平台</title>
+    <meta name="keywords" content="名师辅导，师资强大" />
+    <meta name="description" content="三昧教育-背景最大的教育辅导平台,拥有500人的人才服务团队,帮助孩子取得更好的成绩." />
+
+    <script src="../js/jquery.min.js"></script>
+    <script src="../js/bootstrap-bootbox/bootbox.js"></script>
+    <script src="../js/bootstrap3/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../js/bootstrap3/css/bootstrap.css">
+    <script src="../js/bootstrap-table/dist/bootstrap-table.js"></script>
+    <script src="../js/bootstrap-table/dist/locale/bootstrap-table-zh-CN.js"></script>
+    <link href="../js/bootstrap-table/dist/bootstrap-table.css" rel="stylesheet">
+    <script src="../js/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+    <script src="../js/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+    <link href="../js/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet">
+    <link rel="stylesheet" href="../js/uploadify/uploadify.css">
+    <script src="../js/bootstrap-fileinput/js/fileinput.js"></script>
+    <script src="../js/bootstrap-fileinput/js/locales/zh.js"></script>
+
+    <script src="../js/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../js/bootstrap-treeview/dist/bootstrap-treeview.min.js"></script>
+    <script src="../js/bootStrap-addTabs/bootstrap.addtabs.js"></script>
+    <script src="../js/bootstrap-dialog/dist/js/bootstrap-dialog.js"></script>
+    <script type="text/javascript" src="../js/uploadify/jquery.uploadify.min.js"></script>
+
+
+
+    <link href="../js/bootstrap/css/bootstrap-theme.min.css" rel="stylesheet">
+    <link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../js/bootstrap-treeview/dist/bootstrap-treeview.min.css" rel="stylesheet">
+    <link href="../js/bootStrap-addTabs/bootstrap.addtabs.css" rel="stylesheet">
+
+
+    <link href="../js/bootstrap-dialog/dist/css/bootstrap-dialog.css" rel="stylesheet">
+    <link href="../js/bootstrap-fileinput/css/fileinput.css" rel="stylesheet">
+
+
+    <style type="text/css">
+        .pointer{
+            cursor: pointer;
+        }
+        body{text-align: center}
+    </style>
+
+</head>
+<body>
+
+<div class="panel panel-default">
+    <div class="panel-heading" style="flow-into: unset">
+
+        <nav class="navbar navbar-default navbar-static-top clearfix" style="background: #94A6B0">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">
+                    <img alt="Brand" src="../img/logo.png" style="width: 82px;height: 80px">
+                </a>
+            </div>
+
+            <!--条查      查询课程-->
+            <form class="navbar-form navbar-collapse" role="search">
+                <div class="form-group">
+                    <input type="text" id="searchAll-id" class="form-control" placeholder="搜索课程">
+                </div>
+                <input type="button" onclick="searchAll()" value="搜索" class="btn btn-default"><i class="glyphicon glyphicon-search"></i></input>
+            </form>
+
+            <div class="navbar-right" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav sf-menu felink-menu" data-type="navbar">
+                    <li class="dropdown">
+                        <ul class="nav navbar-nav sf-menu felink-menu" data-type="navbar">
+                            <li><b>欢迎登录</b></li>
+                            <li>
+                                <!--ID:<div th:text="${session.userObj.userId}"></div>   取Id-->
+                                用户:<a href="../sha/tozhifuyemian"><div th:text="${session.userObj.userName}"></div></a><!--进入订单页面跳转-->
+                                <a href="../tomain">[退出]</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+
+            </div>
+
+            <!-- 标题内容 -->
+
+
+
+            <!--<div class="panel-heading"></div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <input class="form-control" id="kecheng" placeholder="搜索课程"/>
+                    </div>
+                    <div class="col-md-1">
+                        <button onclick="searchkecheng()" type="button" class="btn btn-info btn-block"><i class="glyphicon glyphicon-search"></i>搜索</button>
+                    </div>
+                </div>
+            </div>-->
+
+        </nav>
+    </div>
+</div>
+
+<div id="div-id">
+    <!-- 轮播图片-->
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+            <div class="item active" style="background: white">
+                <img class="img-responsive center-block" src="../img/kele.jpg" style="width: 1000px;height: 400px">
+            </div>
+            <div class="item" style="background: beige">
+                <img class="img-responsive center-block" src="../img/gucheng.jpg"  style="width: 1000px;height: 400px">
+            </div>
+            <div class="item" style="background: white">
+                <img class="img-responsive center-block" src="../img/shanshui.png"  style="width: 1000px;height: 400px">
+            </div>
+            <div class="item" style="background: #0044cc">
+                <img class="img-responsive center-block" src="../img/benchi.jpg"  style="width: 1000px;height: 400px">
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" id="aaron1"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" id="aaron2"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+
+    <div style="text-align: center">
+        <h1>荣誉见证辉煌，实力见证品牌</h1><br>
+        <h3 style="color: #8c8c8c">缔造年轻人的中国梦</h3>
+    </div><br>
+
+    <!-- 图片自定义内容-->
+    <div class="row">
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img src="../img/timg.jpg" style="width: 250px;height: 300px">
+                <div class="caption">
+                    <h3>马云</h3>
+                    <p>2019福布斯中国慈善榜排名第3位。
+                        2019年10月获得福布斯终身成就奖。
+                        2019年10月19日，入选2019福布斯年度商业人物之跨国经营商业领袖名单。
+                        江湖人称“杰克马”
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img src="../img/xiaomage.jpg" style="width: 250px;height: 300px">
+                <div class="caption">
+                    <h3>小马哥</h3>
+                    <p>1971年出生于广东省汕头市，
+                        1993年获深圳大学理学士学位。
+                        腾讯公司主要创办人之一。
+                        现任腾讯公司董事会主席兼首席执行官。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img src="../img/dongge.jpg" style="width: 250px;height: 300px">
+                <div class="caption">
+                    <h3>东哥</h3>
+                    <p>他出身平凡、行事果敢，有时显得鲁莽，却拥有独到的战略眼光，而且越来越表现
+                        刘强东获评“全球50位最伟大领导者”排行榜
+                        出超越草莽英雄的潜质。十一年，昔日草莽英雄终成今日商业领袖，但越是接近成功，就越是感受到失败的迫近，他没有停下，他是刘强东。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-6 col-md-3">
+            <div class="thumbnail">
+                <img src="../img/liyanhong.jpg" style="width: 250px;height: 300px">
+                <div class="caption">
+                    <h3>李彦宏</h3>
+                    <p>李彦宏（Robin Li），男，汉族，无党派人士，
+                        1968年11月出生，山西阳泉人，现任百度创始人、董事长兼首席执行官（CEO）。
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="text-align: center">
+        <h1>公开体验课</h1><br>
+        <h3 style="color: #8c8c8c">了解教学内容 体验教学方法</h3>
+    </div><br>
+
+    <!-- 导航条-->
+    <div>
+        <ul class="nav nav-tabs nav-justified">
+            <li role="presentation" class="btn" style="background: #d58512">课程方向</li>
+            <li role="presentation" style="background: #ce8483"><a href="#buxian" aria-controls="home" role="tab" data-toggle="tab">不限</a></li>
+            <li role="presentation" style="background: #122b40"><a href="#gongkai" aria-controls="messages" role="tab" data-toggle="tab">公开课</a></li>
+            <li role="presentation" style="background: #2b542c"><a href="#fufei" aria-controls="settings" role="tab" data-toggle="tab">付费课</a></li>
+        </ul><br>
+
+        <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="buxian">
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <a href="../tovideo" class="thumbnail">
+                            <img src="../img/it1.jpg" style="width: 300px;height: 150px">
+                        </a>
+                        <div class="caption">
+                            <a href="../tovideo">JAVA架构师精品课 企业级架构/分布式/高并发/微服务</a><br><br>
+                            <p style="color: brown">免费</p><h5 style="color: #8c8c8c">近一万人报名</h5>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../img/daxue1.png" style="width: 300px;height: 150px">
+                        </a>
+                        <div class="caption">
+                            <a href="#">全国二级office 选择题强化</a><br><br>
+                            <p style="color: brown">免费</p><h5 style="color: #8c8c8c">近一万人报名</h5>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../img/dianshang1.jpg" style="width: 300px;height: 150px">
+                        </a>
+                        <div class="caption">
+                            <a href="#">淘宝新时代，内容营销</a><br><br>
+                            <p style="color: brown">免费</p><h5 style="color: #8c8c8c">近一万人报名</h5>
+                        </div>
+
+                    </div>
+
+
+
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../img/gaozhong1.jpg" style="width: 300px;height: 150px">
+                        </a>
+                        <div class="caption">
+                            <a href="#">高考数学大招秀+2019高考数学真题精</a><br><br>
+                            <p style="color: brown">免费</p><h5 style="color: #8c8c8c">近一万人报名</h5>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../img/sheying1.jpg" style="width: 300px;height: 150px">
+                        </a>
+                        <div class="caption">
+                            <a href="#">摄影后期制作--修出专业大片</a><br><br>
+                            <p style="color: brown">免费</p><h5 style="color: #8c8c8c">1422人最近报名</h5>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../img/it2.png" style="width: 300px;height: 150px">
+                        </a>
+                        <div class="caption">
+                            <a href="#">Python/爬虫/人工智能/TensorFlow/机器学习/Django/图像识别</a><br><br>
+                            <p style="color: brown">免费</p><h5 style="color: #8c8c8c">946人最近报名</h5>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../img/daxue2.png" style="width: 300px;height: 150px">
+                        </a>
+                        <div class="caption">
+                            <a href="#">光学 大学物理 1.5小时讲完【速成课】蜂考 高斯课堂 期末不挂科</a><br><br>
+                            <p style="color: brown">免费</p><h5 style="color: #8c8c8c">近一万人报名</h5>
+                        </div>
+
+                    </div>
+
+                    <div class="col-xs-6 col-md-3">
+                        <a href="#" class="thumbnail">
+                            <img src="../img/dianshang2.jpg" style="width: 300px;height: 150px">
+                        </a>
+                        <div class="caption">
+                            <a href="#">数据化运营玩爆自然流量</a><br><br>
+                            <p style="color: brown">免费</p><h5 style="color: #8c8c8c">近一万人报名</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div role="tabpanel" class="tab-pane active" id="gongkai">
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img src="../img/gaozhong1.jpg" style="width: 300px;height: 150px">
+                    </a>
+                    <div class="caption">
+                        <a href="#">高考数学大招秀+2019高考数学真题精</a><br><br>
+                        <p style="color: brown">免费</p><h5 style="color: #8c8c8c">近1254人报名</h5>
+                    </div>
+
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img src="../img/gaozhong2.jpg" style="width: 300px;height: 150px">
+                    </a>
+                    <div class="caption">
+                        <a href="#">高考二三轮抢分攻略</a><br><br>
+                        <p style="color: brown">免费</p><h5 style="color: #8c8c8c">2345人最近报名</h5>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img src="../img/gaozhong3.jpg" style="width: 300px;height: 150px">
+                    </a>
+                    <div class="caption">
+                        <a href="#">【速记3500词】高考英语词汇专项</a><br><br>
+                        <p style="color: brown">免费</p><h5 style="color: #8c8c8c">322人报名</h5>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img src="../img/gaozhong4.jpg" style="width: 300px;height: 150px">
+                    </a>
+                    <div class="caption">
+                        <a href="#">2020高考政治一轮复习规划</a><br><br>
+                        <p style="color: brown">免费</p><h5 style="color: #8c8c8c">687人报名</h5>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div role="tabpanel" class="tab-pane" id="fufei">
+
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img src="../img/daxue1.png" style="width: 300px;height: 150px">
+                    </a>
+                    <div class="caption">
+                        <a href="../tovideo2">全国二级office 选择题强化</a><br><br>
+                        <p style="color: brown">¥1223</p><h5 style="color: #8c8c8c">869人报名</h5>
+                    </div>
+
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img src="../img/daxue2.png" style="width: 300px;height: 150px">
+                    </a>
+                    <div class="caption">
+                        <a href="#">光学 大学物理 1.5小时讲完【速成课】蜂考 高斯课堂 期末不挂科</a><br><br>
+                        <p style="color: brown">¥1028</p><h5 style="color: #8c8c8c">1245人报名</h5>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img src="../img/daxue3.jpg" style="width: 300px;height: 150px">
+                    </a>
+                    <div class="caption">
+                        <a href="#">大学英语六级词汇 高效拓展</a><br><br>
+                        <p style="color: brown">¥1589</p><h5 style="color: #8c8c8c">近一万人报名</h5>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-md-3">
+                    <a href="#" class="thumbnail">
+                        <img src="../img/daxue4.jpg" style="width: 300px;height: 150px">
+                    </a>
+                    <div class="caption">
+                        <a href="#">公共英语三级——学位外语——试听课——哈尔滨工业大学</a><br><br>
+                        <p style="color: brown">¥1999</p><h5 style="color: #8c8c8c">526人报名</h5>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<div id="spanName" style="width:1150px;height: 1100px;margin-left: 110px">
+
+</div>
+
+
+<div class="clear" style="word-break: break-all;"> </div>
+<div class="jumbotron" style="word-break: break-all;">
+    <h2>合作连接</h2><br>
+    <h4><a href="https://daxuepc.com/index" class="pointer">腾讯大学</a>    <a href="https://new.qq.com/ch/edu/" class="pointer">腾讯网教育频道</a>   <a href="https://class.qq.com/" class="pointer">腾讯精品课</a>   <a href="https://cloud.tencent.com/?fromSource=gwzcw.788739.788739.788739" class="pointer">腾讯云</a>
+        <a href="https://guanjia.qq.com/" class="pointer">腾讯电脑管家</a>     <a href="https://yaq.qq.com/" class="pointer">腾讯御安全</a>    <a href="https://fm.qq.com/" class="pointer">企鹅FM</a>   <a href="https://www.weiyun.com/" class="pointer">腾讯微云</a>
+    </h4>
+</div>
+
+
+
+<script>
+
+    /* function searchAll() {
+        location.href="../subject/selectAll?subject="+$("#sub-id").val()+"&page="+1+"&rows="+8;
+
+     }
+ */
+
+
+    searchAll = function(){
+        $("#div-id").html("");
+        var subName = $("#searchAll-id").val();
+        // alert(subName);
+        $.ajax({
+            url:"../subject/selectAll2?subName="+subName,
+            type:"post",
+            success:function (data) {
+                var str = '';
+                for (var i = 0; i < data.length ;i++) {
+                    str+='  <div style="width: 267px;height: 350px;float: left;border-right: 2px ">'
+                        +'          <div style="width: 100%;height: 50%;margin-left: 20px" > <a href="javascript:details('+data[i].subjectId+')"> <img src="'+data[i].subImg+'" height="150" width="200px"/></a></div>'
+                        +'          <div style="width: 100%;height: 50%">'
+                        +'          <div style="width: 100%;height: 20%;margin-top: 20px;margin-left: 20px">'
+                        +'          <a href="javascript:details('+data[i].subjectId+')"> <font style="color: black"><b> '+data[i].subjectName+' </b></font></a>'
+
+                        +'      <a href="javascript:details('+data[i].subjectId+')"><font style="color: black"><b>['+data[i].subName+' • '+data[i].courselevel+']</b></font>'
+                        +'      </a></div>'
+                        +'      <div style="width: 100%;height: 20%;margin-top: 5px;margin-left: 30px"> <a href="../subject/details?id="+subjectId><font style="color: black"><b>'+data[i].userName+'</b></font></a></div>'
+                        +'      <div style="width: 100%;margin-top: 10px">'
+                        +'      <a href="javascript:details('+data[i].subjectId+')"><b><font style="color: black"></font></b></a>'
+                        /* +'      <div style="width: 20%;float: left"><a href="#"><b><font style="color: black">'+data[i].jobExperience+'</font></b></a></div>'*/
+                        +'       <a href="javascript:details('+data[i].subjectId+')"><b><font style="color: black">'+data[i].subInfo+'</font></b></a>'
+                        +'      </div>'
+
+                        +'      </div>'
+                        +' </div>';
+
+                }
+                $("#spanName").html(str) ;
+
+            }
+        })
+    }
+
+</script>
+<script>
+    function details(id) {
+        // alert(id+"=id")
+        location.href="../subject/details?id="+id;
+
+    }
+</script>
+</body>
+</html>
